@@ -53,5 +53,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.google.code.gson:gson:2.9.1")
+    implementation(libs.mobile.ffmpeg.full.gpl)
 
 }

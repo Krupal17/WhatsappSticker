@@ -15,6 +15,7 @@ import com.google.gson.reflect.TypeToken
 import com.kp.bright.whatsapptickers.BuildConfig
 import com.kp.bright.whatsapptickers.stickersmanage.StickerPackUtils
 import com.kp.bright.whatsapptickers.stickersmanage.StickerPackUtils.TAG
+import com.kp.bright.whatsapptickers.whatsappsticker.GifToWebPConverter.ConversionCallback
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -181,63 +182,78 @@ fun copyAllAssetsToExternalStorage(context: Context) {
                     val inputStream: InputStream = assetManager.open(packFileAssetDir)
                     var outFile: File
 
-                    if (packfile.endsWith(".gif")) {
-                        outFile = File(
-                            context.getExternalFilesDir(null), // Using getExternalFilesDir for better compatibility
-                            "$packname/anim_$packfile"
-                        )
-                    } else {
-                        outFile = File(
-                            context.getExternalFilesDir(null), // Using getExternalFilesDir for better compatibility
-                            "$packname/$packfile"
-                        )
-                    }
-
-                    saveFile(inputStream, outFile)
-
-                    // Log file sizes for debugging
-                    val assetFileSize = assetManager.openFd(packFileAssetDir).length
-                    val externalFileSize = outFile.length()
-                    Log.d(
-                        "TAG-",
-                        "File copied: $packfile, Asset size: $assetFileSize, External size: $externalFileSize"
-                    )
-
 //                    if (packfile.endsWith(".gif")) {
-//                        var webpFile = packfile.replace(".gif", ".webp")
-//                        var newFile = File(
+//                        outFile = File(
 //                            context.getExternalFilesDir(null), // Using getExternalFilesDir for better compatibility
-//                            "$packname/anim_$webpFile"
+//                            "$packname/anim_$packfile"
 //                        )
-//                        convertGifToWebpForAssets(context, packFileAssetDir, newFile.absolutePath)
 //                    } else {
-//
-//                        val inputStream: InputStream = assetManager.open(packFileAssetDir)
-//                        val outFile = File(
+//                        outFile = File(
 //                            context.getExternalFilesDir(null), // Using getExternalFilesDir for better compatibility
 //                            "$packname/$packfile"
 //                        )
+//                    }
 //
-//                        saveFile(inputStream, outFile)
+//                    saveFile(inputStream, outFile)
 //
-//                        // Log file sizes for debugging
-//                        val assetFileSize = assetManager.openFd(packFileAssetDir).length
-//                        val externalFileSize = outFile.length()
+//                    // Log file sizes for debugging
+//                    val assetFileSize = assetManager.openFd(packFileAssetDir).length
+//                    val externalFileSize = outFile.length()
+//                    Log.d(
+//                        "TAG-",
+//                        "File copied: $packfile, Asset size: $assetFileSize, External size: $externalFileSize"
+//                    )
+
+                    if (packfile.endsWith(".gif")) {
+                        var webpFile = packfile.replace(".gif", ".webp")
+                        var newFile = File(
+                            context.getExternalFilesDir(null), // Using getExternalFilesDir for better compatibility
+                            "$packname/anim_$webpFile"
+                        )
+//                        convertGifToWebpForAssets(context, packFileAssetDir, newFile.absolutePath)
+                        GifToWebPConverter.convertGifToWebP(
+                            context,
+                            packFileAssetDir,
+                            newFile.absolutePath,
+                            object : ConversionCallback {
+                                override fun onSuccess(outputPath: String) {
+                                    // Handle the success scenario
+                                    Log.d("Conversion", "Success: $outputPath")
+                                }
+
+                                override fun onFailure(error: String) {
+                                    // Handle the failure scenario
+                                    Log.e("Conversion", "Failure: $error")
+                                }
+                            })
+                    } else {
+
+                        val inputStream: InputStream = assetManager.open(packFileAssetDir)
+                        val outFile = File(
+                            context.getExternalFilesDir(null), // Using getExternalFilesDir for better compatibility
+                            "$packname/$packfile"
+                        )
+
+                        saveFile(inputStream, outFile)
+
+                        // Log file sizes for debugging
+                        val assetFileSize = assetManager.openFd(packFileAssetDir).length
+                        val externalFileSize = outFile.length()
+                        Log.d(
+                            "TAG-",
+                            "File copied: $packfile, Asset size: $assetFileSize, External size: $externalFileSize"
+                        )
+                        // Compare image properties
+//                        val assetBitmap =
+//                            BitmapFactory.decodeStream(assetManager.open(packFileAssetDir))
+//                        val externalBitmap = BitmapFactory.decodeFile(outFile.absolutePath)
+//                        val assetHeight = assetBitmap.height
+//                        val externalHeight = externalBitmap.height
 //                        Log.d(
 //                            "TAG-",
-//                            "File copied: $packfile, Asset size: $assetFileSize, External size: $externalFileSize"
+//                            "File: $packfile, Asset height: $assetHeight, External height: $externalHeight"
 //                        )
-//                        // Compare image properties
-////                        val assetBitmap =
-////                            BitmapFactory.decodeStream(assetManager.open(packFileAssetDir))
-////                        val externalBitmap = BitmapFactory.decodeFile(outFile.absolutePath)
-////                        val assetHeight = assetBitmap.height
-////                        val externalHeight = externalBitmap.height
-////                        Log.d(
-////                            "TAG-",
-////                            "File: $packfile, Asset height: $assetHeight, External height: $externalHeight"
-////                        )
-//                    }
+                    }
                 }
                 loadStickerPack(context, packname)?.let {
                     StickerPackUtils.saveStickerPackMetadata(
@@ -245,9 +261,9 @@ fun copyAllAssetsToExternalStorage(context: Context) {
                     )
                 };
             }
-
         }
     }
+
 
 //    if (files != null) {
 //        for (filename in files) {

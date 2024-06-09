@@ -29,7 +29,8 @@ import java.io.File
 
 class MainActivity : AppCompatActivity() {
     var REQUEST_CODE = 600
-    var identifier = "Animations"
+    var identifier = "States"
+//    var identifier = "Animations"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
