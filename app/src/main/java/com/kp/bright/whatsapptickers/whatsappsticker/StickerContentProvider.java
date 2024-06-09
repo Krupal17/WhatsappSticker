@@ -97,6 +97,8 @@ public class StickerContentProvider extends ContentProvider {
 
         //gets the list of stickers for a sticker pack, * represent the identifier.
         MATCHER.addURI( authority, STICKERS + "/*", STICKERS_CODE );
+        Log.e( TAG, "onCreate: 111 " );
+
 
         for (StickerPackMetadata stickerPack : getStickerPackMetadataList()) {
             MATCHER.addURI( authority, STICKERS_ASSET + "/" + stickerPack.getIdentifier() + "/" + stickerPack.getTrayImageFile(), STICKER_PACK_TRAY_ICON_CODE );
@@ -109,6 +111,20 @@ public class StickerContentProvider extends ContentProvider {
         return true;
     }
 
+<<<<<<< Updated upstream
+=======
+
+    void notifyStickerPack() {
+        for (StickerPackMetadata stickerPack : stickerPackList) {
+            MATCHER.addURI( AUTHORITY, STICKERS_ASSET + "/" + stickerPack.getIdentifier() + "/" + stickerPack.getTrayImageFile(), STICKER_PACK_TRAY_ICON_CODE );
+            for (Sticker sticker : stickerPack.getStickers()) {
+                Log.e( TAG, "onCreate: " + sticker.getImageFile() );
+                MATCHER.addURI( AUTHORITY, STICKERS_ASSET + "/" + stickerPack.getIdentifier() + "/" + sticker.getImageFile(), STICKERS_ASSET_CODE );
+            }
+        }
+    }
+
+>>>>>>> Stashed changes
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {

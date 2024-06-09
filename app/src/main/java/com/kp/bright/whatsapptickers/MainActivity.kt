@@ -17,8 +17,14 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.kp.bright.whatsapptickers.whatsappsticker.ADD_PACK
 import com.kp.bright.whatsapptickers.whatsappsticker.addStickerPackToWhatsApp
+import com.kp.bright.whatsapptickers.whatsappsticker.copyAllAssetsToExternalStorage
 import com.kp.bright.whatsapptickers.whatsappsticker.copyAssetsToExternalStorage
 import com.kp.bright.whatsapptickers.whatsappsticker.createStickerPack
+<<<<<<< Updated upstream
+=======
+import com.kp.bright.whatsapptickers.whatsappsticker.initPacks
+import com.kp.bright.whatsapptickers.whatsappsticker.loadStickerPack
+>>>>>>> Stashed changes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -26,7 +32,7 @@ import java.io.File
 
 class MainActivity : AppCompatActivity() {
     var REQUEST_CODE = 600
-    var identifier = "Demo2"
+    var identifier = "Animations"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -52,9 +58,10 @@ class MainActivity : AppCompatActivity() {
                     getExternalFilesDir(null),
                     "$identifier"
                 )
-//                listAssetFiles(this,"sticker")
+                initPacks(this)
                 if (!pack.exists()) {
-                    copyAssetsToExternalStorage(this, identifier)
+//                    copyAssetsToExternalStorage(this, identifier)
+                    copyAllAssetsToExternalStorage(this)
                 } else {
                     pack.mkdirs()
                 }
@@ -74,8 +81,10 @@ class MainActivity : AppCompatActivity() {
                     getExternalFilesDir(null),
                     "$identifier"
                 )
+                initPacks(this)
                 if (!pack.exists()) {
-                    copyAssetsToExternalStorage(this, identifier)
+//                    copyAssetsToExternalStorage(this, identifier)
+                    copyAllAssetsToExternalStorage(this)
                 }
             }
         }
@@ -145,8 +154,10 @@ class MainActivity : AppCompatActivity() {
                     getExternalFilesDir(null),
                     "$identifier"
                 )
+                initPacks(this)
                 if (!pack.exists()) {
-                    copyAssetsToExternalStorage(this, identifier)
+//                    copyAssetsToExternalStorage(this, identifier)
+                    copyAllAssetsToExternalStorage(this)
                 }
             } else {
                 // Permission denied, handle accordingly
