@@ -8,14 +8,11 @@
 
 package com.kp.bright.whatsapptickers.whatsappsticker;
 
-import static com.kp.bright.whatsapptickers.stickersmanage.StickerPackUtils.*;
-
-import static com.kp.bright.whatsapptickers.whatsappsticker.UtilsKt.loadAllStickerPacks;
+import static com.kp.bright.whatsapptickers.stickersmanage.StickerPackUtils.TAG;
 
 import android.content.ContentProvider;
 import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.UriMatcher;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
@@ -35,7 +32,6 @@ import com.kp.bright.whatsapptickers.BuildConfig;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -62,28 +58,22 @@ public class StickerContentProvider extends ContentProvider {
     public static final String STICKER_FILE_NAME_IN_QUERY = "sticker_file_name";
     public static final String STICKER_FILE_EMOJI_IN_QUERY = "sticker_emoji";
     private static final String CONTENT_FILE_NAME = "contents.json";
-<<<<<<< Updated upstream
-    private static final String AUTHORITY = "com.kp.bright.whatsapptickers.stickerprovider";
-    public static final Uri AUTHORITY_URI = new Uri.Builder().scheme( ContentResolver.SCHEME_CONTENT ).authority( AUTHORITY ).appendPath( StickerContentProvider.METADATA ).build();
-
-=======
     private static final String AUTHORITY = BuildConfig.CONTENT_PROVIDER_AUTHORITY;
     public static final Uri.Builder AUTHORITY_URI = new Uri.Builder().scheme( ContentResolver.SCHEME_CONTENT ).authority( AUTHORITY );
 //    public static final Uri AUTHORITY_URI = new Uri.Builder().scheme( ContentResolver.SCHEME_CONTENT ).authority( AUTHORITY ).appendPath( StickerContentProvider.METADATA ).build();
->>>>>>> Stashed changes
     /**
      * Do not change the values in the UriMatcher because otherwise, WhatsApp will not be able to fetch the stickers from the ContentProvider.
      */
     private static final UriMatcher MATCHER = new UriMatcher( UriMatcher.NO_MATCH );
-    private static final String METADATA = "metadata";
+    public static final String METADATA = "metadata";
     private static final int METADATA_CODE = 1;
 
     private static final int METADATA_CODE_FOR_SINGLE_PACK = 2;
 
-    static final String STICKERS = "stickers";
+    public static final String STICKERS = "stickers";
     private static final int STICKERS_CODE = 3;
 
-    static final String STICKERS_ASSET = "stickers_asset";
+    public static final String STICKERS_ASSET = "stickers_asset";
     private static final int STICKERS_ASSET_CODE = 4;
 
     private static final int STICKER_PACK_TRAY_ICON_CODE = 5;
@@ -130,13 +120,9 @@ public class StickerContentProvider extends ContentProvider {
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-<<<<<<< Updated upstream
-        Log.e( TAG, "query: " + uri  );
-=======
         Log.wtf( TAG, "query: " + uri + "  === \n" + new Gson().toJson( stickerPackList ) );
 
 
->>>>>>> Stashed changes
         final int code = MATCHER.match( uri );
         if (code == METADATA_CODE) {
             return getPackForAllStickerPackMetadatas( uri );
@@ -184,15 +170,6 @@ public class StickerContentProvider extends ContentProvider {
         }
     }
 
-<<<<<<< Updated upstream
-    private List<StickerPackMetadata> getStickerPackMetadataList() {
-        if (stickerPackList == null) {
-            stickerPackList = loadAllStickerPacks( Objects.requireNonNull( getContext() ) );
-        }
-        return stickerPackList;
-    }
-=======
->>>>>>> Stashed changes
 
     private Cursor getPackForAllStickerPackMetadatas(@NonNull Uri uri) {
         return getStickerPackMetadataInfo( uri, stickerPackList );
