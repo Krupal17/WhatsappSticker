@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
@@ -39,7 +40,6 @@ fun loadAllStickerPacks(context: Context): List<StickerPackMetadata> {
     }
 }
 
-
 fun copyAssetsToExternalStorage(context: Context, identifier: String) {
     val assetManager = context.assets
     val assetsDir = "sticker" // Folder name in the assets directory
@@ -56,6 +56,24 @@ fun copyAssetsToExternalStorage(context: Context, identifier: String) {
                 outFile.parentFile.mkdirs()
             }
             saveFile(inputStream, outFile)
+
+            // Log file sizes for debugging
+            val assetFileSize = assetManager.openFd("$assetsDir/$filename").length
+            val externalFileSize = outFile.length()
+            Log.d(
+                "TAG-",
+                "File copied: $filename, Asset size: $assetFileSize, External size: $externalFileSize"
+            )
+
+            // Compare image properties
+            val assetBitmap = BitmapFactory.decodeStream(assetManager.open("$assetsDir/$filename"))
+            val externalBitmap = BitmapFactory.decodeFile(outFile.absolutePath)
+            val assetHeight = assetBitmap.height
+            val externalHeight = externalBitmap.height
+            Log.d(
+                "TAG-",
+                "File: $filename, Asset height: $assetHeight, External height: $externalHeight"
+            )
         }
     }
 }
@@ -150,7 +168,8 @@ fun validateStickerPack(context: Context, identifier: String) {
             try {
                 if (cursor.moveToFirst()) {
                     val packName = cursor.getString(cursor.getColumnIndex("sticker_pack_name"))
-                    val publisher = cursor.getString(cursor.getColumnIndex("sticker_pack_publisher"))
+                    val publisher =
+                        cursor.getString(cursor.getColumnIndex("sticker_pack_publisher"))
                     val trayIcon = cursor.getString(cursor.getColumnIndex("sticker_pack_tray_icon"))
 
                     Log.d("StickerPackValidator", "Sticker Pack ID: $identifier")
@@ -158,7 +177,10 @@ fun validateStickerPack(context: Context, identifier: String) {
                     Log.d("StickerPackValidator", "Publisher: $publisher")
                     Log.d("StickerPackValidator", "Tray Icon: $trayIcon")
                 } else {
-                    Log.e("StickerPackValidator", "Sticker pack not found with identifier: $identifier")
+                    Log.e(
+                        "StickerPackValidator",
+                        "Sticker pack not found with identifier: $identifier"
+                    )
                 }
             } finally {
                 cursor.close()
