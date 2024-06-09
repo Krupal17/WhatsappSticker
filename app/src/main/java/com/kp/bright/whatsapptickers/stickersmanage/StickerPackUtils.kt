@@ -6,7 +6,6 @@ import android.util.Log
 import com.google.gson.Gson
 import com.kp.bright.whatsapptickers.whatsappsticker.StickerContentProvider
 import com.kp.bright.whatsapptickers.whatsappsticker.StickerPackMetadata
-import com.kp.bright.whatsapptickers.whatsappsticker.loadAllStickerPacks
 import com.kp.bright.whatsapptickers.whatsappsticker.loadAllStickerPacksVisJson
 import com.kp.bright.whatsapptickers.whatsappsticker.notifyMediaScanner
 import java.io.File
