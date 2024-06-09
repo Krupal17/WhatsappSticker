@@ -11,8 +11,17 @@ import android.util.Log
 import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+<<<<<<< Updated upstream
 import com.kp.bright.whatsapptickers.whatsappsticker.StickerContentProvider
 import com.kp.bright.whatsapptickers.stickersmanage.StickerPackUtils
+=======
+import com.kp.bright.whatsapptickers.BuildConfig
+import com.kp.bright.whatsapptickers.stickersmanage.StickerPackUtils
+import com.kp.bright.whatsapptickers.stickersmanage.StickerPackUtils.TAG
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+>>>>>>> Stashed changes
 import java.io.File
 import java.io.FileOutputStream
 import java.io.FileReader
@@ -40,7 +49,72 @@ fun loadAllStickerPacks(context: Context): List<StickerPackMetadata> {
     }
 }
 
+<<<<<<< Updated upstream
 fun copyAssetsToExternalStorage(context: Context, identifier: String) {
+=======
+fun loadAllStickerPacks(context: Context): ArrayList<StickerPackMetadata> {
+    var result = ArrayList<StickerPackMetadata>()
+    val metadataFile: File = File(context.getExternalFilesDir(null)?.absolutePath)
+    Log.e("TAG-", "loadAllStickerPacks: --> ${metadataFile.exists()}")
+    if (!metadataFile.exists()) {
+        return result
+    }
+    metadataFile?.listFiles()?.forEach { pack ->
+        if (!pack.name.equals("stickers")) {
+            if (pack.exists()) {
+                var stickerPaths = ArrayList<String>()
+                var iconPath = ""
+                CoroutineScope(Dispatchers.IO).launch {
+                    var metadata = loadStickerPack(context, identifier = pack.name)
+//                        createStickerPack(
+//                        pack.name,
+//                        pack.name,
+//                        "kpStickers",
+//                        iconPath,
+//                        stickerPaths,
+//                        context,
+//                        isJsonRetrival = false
+//                    )
+                    metadata?.let { result.add(it) }
+                }
+            }
+        }
+    }
+    return result
+}
+
+fun loadStickerPack(context: Context, identifier: String): StickerPackMetadata? {
+    var result: StickerPackMetadata? = null
+    val metadataFile: File = File(context.getExternalFilesDir(null), identifier)
+    Log.e("TAG-", "loadAllStickerPacks: --> ${metadataFile.exists()}")
+    if (!metadataFile.exists()) {
+        return result
+    }
+
+    var stickerPaths = ArrayList<String>()
+    var iconPath = ""
+    metadataFile.listFiles().forEach {
+        if (it.name.contains("trayicon")) {
+            iconPath = it.name
+        } else {
+            stickerPaths.add(it.name)
+        }
+    }
+    val stickers = stickerPaths.map { Sticker(it, ArrayList()) }
+    var pack = StickerPackMetadata(
+        identifier,
+        identifier,
+        "kpStickers",
+        iconPath,
+        metadataFile.name.endsWith(".gif"),
+        stickers = stickers
+    )
+    result = pack
+    return result
+}
+
+fun copyAssetsToExternalStorage(context: Context, identifier: String) {//Single Pack Saving
+>>>>>>> Stashed changes
     val assetManager = context.assets
     val assetsDir = "sticker" // Folder name in the assets directory
     val files = assetManager.list(assetsDir)
@@ -74,6 +148,11 @@ fun copyAssetsToExternalStorage(context: Context, identifier: String) {
                 "TAG-",
                 "File: $filename, Asset height: $assetHeight, External height: $externalHeight"
             )
+<<<<<<< Updated upstream
+=======
+//            notifyMediaScanner(context, outFile)
+
+>>>>>>> Stashed changes
         }
     }
 }
@@ -93,6 +172,30 @@ fun saveFile(inputStream: InputStream, outFile: File) {
     }
 }
 
+private fun getStickerPackMetadataList(context: Context): List<StickerPackMetadata> {
+    Log.e(TAG, "Pertkoi 1--> " + Gson().toJson(StickerContentProvider.stickerPackList))
+
+    if (StickerContentProvider.stickerPackList == null) {
+        StickerContentProvider.stickerPackList = loadAllStickerPacksVisJson(context)
+        Log.e(TAG, "Pertkoi 2--> " + Gson().toJson(StickerContentProvider.stickerPackList))
+    } else if (StickerContentProvider.stickerPackList.size == 0) {
+        StickerContentProvider.stickerPackList = loadAllStickerPacksVisJson(context)
+        Log.e(TAG, "Pertkoi 3--> " + Gson().toJson(StickerContentProvider.stickerPackList))
+    }
+    Log.e(
+        TAG,
+        "Pertkoi 4--> " + Gson().toJson(StickerContentProvider.stickerPackList) + "   #  " + StickerContentProvider.stickerPackList.size
+    )
+    return StickerContentProvider.stickerPackList
+}
+
+fun notifyMediaScanner(context: Context, file: File) {
+    getStickerPackMetadataList(context)
+    StickerContentProvider().notifyStickerPack()
+//    context.contentResolver.notifyChange(StickerPackUtils.getStickersURI())
+//    val uri = Uri.fromFile(file)
+//    context.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri))
+}
 
 fun createStickerPack(
     identifier: String,
@@ -129,7 +232,7 @@ fun Activity.addStickerPackToWhatsApp(stickerPackIdentifier: String?, stickerPac
 //    intent.setPackage("com.whatsapp")
     intent.setAction("com.whatsapp.intent.action.ENABLE_STICKER_PACK")
     intent.putExtra("sticker_pack_id", stickerPackIdentifier)
-    intent.putExtra("sticker_pack_authority", "com.kp.bright.whatsapptickers.stickerprovider")
+    intent.putExtra("sticker_pack_authority", BuildConfig.CONTENT_PROVIDER_AUTHORITY)
     intent.putExtra("sticker_pack_name", stickerPackName)
 
 

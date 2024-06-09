@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kp.bright.whatsapptickers"
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission
@@ -37,6 +38,14 @@
             </intent-filter>
         </activity>
 
+<!--        <receiver-->
+<!--            android:name=".stickersmanage.CacheRefreshReceiver"-->
+<!--            android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.kp.bright.whatsapptickers.ACTION_REFRESH_CACHE" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+
         <!--        <provider-->
         <!--            android:name=".whatsappsticker.StickerContentProvider"-->
         <!--            android:authorities="com.kp.bright.whatsapptickers.provider"-->
@@ -51,14 +60,14 @@
 
         <provider
             android:name=".whatsappsticker.StickerContentProvider"
-            android:authorities="com.kp.bright.whatsapptickers.stickerprovider"
+            android:authorities="com.kp.bright.whatsapptickers.stickercontentprovider"
             android:enabled="true"
             android:exported="true"
             android:grantUriPermissions="true"
             android:readPermission="com.whatsapp.sticker.READ">
-<!--            <meta-data-->
-<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
-<!--                android:resource="@xml/sticker_provider_paths" />-->
+            <!--            <meta-data-->
+            <!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
+            <!--                android:resource="@xml/sticker_provider_paths" />-->
         </provider>
 
 

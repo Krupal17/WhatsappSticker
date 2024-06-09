@@ -1,0 +1,31 @@
+[
+  {
+    "animated": false,
+    "identifier": "Demo2",
+    "name": "Demo2",
+    "publisher": "kpStickers",
+    "stickers": [
+      {
+        "emojis": [],
+        "imageFile": "1.webp"
+      },
+      {
+        "emojis": [],
+        "imageFile": "2.webp"
+      },
+      {
+        "emojis": [],
+        "imageFile": "3.webp"
+      },
+      {
+        "emojis": [],
+        "imageFile": "4.webp"
+      },
+      {
+        "emojis": [],
+        "imageFile": "5.webp"
+      }
+    ],
+    "trayImageFile": "trayicon.webp"
+  }
+]
