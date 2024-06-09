@@ -13,7 +13,11 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
+        buildConfigField(
+            "String",
+            "CONTENT_PROVIDER_AUTHORITY",
+            "\"com.kp.bright.whatsapptickers\" + \".stickercontentprovider\""
+        )
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -32,6 +36,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    buildFeatures{
+        buildConfig=true
     }
 }
 

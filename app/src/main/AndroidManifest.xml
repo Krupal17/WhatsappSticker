@@ -51,7 +51,7 @@
 
         <provider
             android:name=".whatsappsticker.StickerContentProvider"
-            android:authorities="com.kp.bright.whatsapptickers.stickerprovider"
+            android:authorities="com.kp.bright.whatsapptickers.stickercontentprovider"
             android:enabled="true"
             android:exported="true"
             android:grantUriPermissions="true"
