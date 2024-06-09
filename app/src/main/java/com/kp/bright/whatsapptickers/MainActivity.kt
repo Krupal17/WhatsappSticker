@@ -19,6 +19,7 @@ import com.kp.bright.whatsapptickers.whatsappsticker.ADD_PACK
 import com.kp.bright.whatsapptickers.whatsappsticker.addStickerPackToWhatsApp
 import com.kp.bright.whatsapptickers.whatsappsticker.copyAssetsToExternalStorage
 import com.kp.bright.whatsapptickers.whatsappsticker.createStickerPack
+import com.kp.bright.whatsapptickers.whatsappsticker.loadStickerPack
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -96,20 +97,20 @@ class MainActivity : AppCompatActivity() {
                             stickerPaths.add(it.name)
                         }
                     }
-                    var metadata = createStickerPack(
-                        identifier,
-                        "${identifier}",
-                        "kpStickers",
-                        iconPath,
-                        stickerPaths,
-                        this@MainActivity
-                    )
+                    var metadata = loadStickerPack(this@MainActivity, identifier)
+//                    createStickerPack(
+//                        identifier,
+//                        "${identifier}",
+//                        "kpStickers",
+//                        iconPath,
+//                        stickerPaths,
+//                        this@MainActivity
+//                    )
                     withContext(Dispatchers.Main) {
 //                        addStickerPackToWhatsApp(this@MainActivity, identifier,"KrupalDemo")
-                        addStickerPackToWhatsApp(metadata.identifier, metadata.name);
+                        addStickerPackToWhatsApp(metadata?.identifier, metadata?.name);
                     }
                 }
-
             }
 
         }
