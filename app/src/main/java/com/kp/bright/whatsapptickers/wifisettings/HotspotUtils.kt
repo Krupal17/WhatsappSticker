@@ -93,6 +93,7 @@ object HotspotUtils {
             val method = connectivityManager.javaClass.getDeclaredMethod("stopTethering", Int::class.javaPrimitiveType)
             method.isAccessible = true
             method.invoke(connectivityManager, 0)
+            onDone(true)
         } catch (e: Exception) {
             e.printStackTrace()
             Log.e("TAG", "disableWifiTethering: $e")
@@ -114,14 +115,17 @@ object HotspotUtils {
 
     }
 
-    fun toggleHotspot(context: Context, onDone: (Boolean) -> Unit) {
+    fun toggleHotspot(context: Context, onDone: (Boolean) -> Unit,onToggle:(Boolean)->Unit) {
         if (isHotspotEnabled(context)) {
             disableWifiTethering(context) { success ->
                 onDone(success)
+                onToggle(false)
             }
         } else {
             enableWifiTethering(context) { success ->
                 onDone(success)
+                onToggle(true)
+
             }
         }
     }
