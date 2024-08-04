@@ -37,8 +37,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures{
-        buildConfig=true
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -54,5 +55,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.google.code.gson:gson:2.9.1")
     implementation(libs.mobile.ffmpeg.full.gpl)
+
+    implementation ("com.linkedin.dexmaker:dexmaker-mockito:2.28.3")
+    implementation ("com.jakewharton.android.repackaged:dalvik-dx:9.0.0_r3")
 
 }
