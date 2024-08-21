@@ -1,4 +1,4 @@
-package com.kp.bright.whatsapptickers.whatsappsticker
+package com.kp.bright.whatsapptickers.wasticker.whatsappsticker
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -13,9 +13,9 @@ import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.kp.bright.whatsapptickers.BuildConfig
-import com.kp.bright.whatsapptickers.stickersmanage.StickerPackUtils
-import com.kp.bright.whatsapptickers.stickersmanage.StickerPackUtils.TAG
-import com.kp.bright.whatsapptickers.whatsappsticker.GifToWebPConverter.ConversionCallback
+import com.kp.bright.whatsapptickers.wasticker.stickersmanage.StickerPackUtils
+import com.kp.bright.whatsapptickers.wasticker.stickersmanage.StickerPackUtils.TAG
+import com.kp.bright.whatsapptickers.wasticker.whatsappsticker.GifToWebPConverter.ConversionCallback
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package com.kp.bright.whatsapptickers.whatsappsticker
+package com.kp.bright.whatsapptickers.wasticker.whatsappsticker
 
 data class StickerPackMetadata(
     val identifier: String,

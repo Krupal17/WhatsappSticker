@@ -6,9 +6,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-package com.kp.bright.whatsapptickers.whatsappsticker;
+package com.kp.bright.whatsapptickers.wasticker.whatsappsticker;
 
-import static com.kp.bright.whatsapptickers.stickersmanage.StickerPackUtils.TAG;
+import static com.kp.bright.whatsapptickers.wasticker.stickersmanage.StickerPackUtils.TAG;
 
 import android.content.ContentProvider;
 import android.content.ContentResolver;

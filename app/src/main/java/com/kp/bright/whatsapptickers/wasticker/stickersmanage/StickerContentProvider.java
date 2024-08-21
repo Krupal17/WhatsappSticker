@@ -1,38 +1,4 @@
-package com.kp.bright.whatsapptickers.stickersmanage;
-
-import static com.kp.bright.whatsapptickers.stickersmanage.StickerPackUtils.*;
-import static com.kp.bright.whatsapptickers.whatsappsticker.UtilsKt.loadAllStickerPacks;
-
-import static java.lang.System.in;
-import static java.lang.System.out;
-
-import android.content.ContentProvider;
-import android.content.ContentValues;
-import android.content.UriMatcher;
-import android.content.res.AssetFileDescriptor;
-import android.content.res.AssetManager;
-import android.database.Cursor;
-import android.database.MatrixCursor;
-import android.net.Uri;
-import android.os.ParcelFileDescriptor;
-import android.text.TextUtils;
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.google.gson.Gson;
-import com.kp.bright.whatsapptickers.whatsappsticker.Sticker;
-import com.kp.bright.whatsapptickers.whatsappsticker.StickerPackMetadata;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Objects;
+package com.kp.bright.whatsapptickers.wasticker.stickersmanage;
 
 //public class StickerContentProvider extends ContentProvider {
 //    public static final String STICKER_PACK_IDENTIFIER_IN_QUERY = "sticker_pack_identifier";

@@ -1,13 +1,13 @@
-package com.kp.bright.whatsapptickers.stickersmanage
+package com.kp.bright.whatsapptickers.wasticker.stickersmanage
 
 import android.content.Context
 import android.net.Uri
 import android.util.Log
 import com.google.gson.Gson
-import com.kp.bright.whatsapptickers.whatsappsticker.StickerContentProvider
-import com.kp.bright.whatsapptickers.whatsappsticker.StickerPackMetadata
-import com.kp.bright.whatsapptickers.whatsappsticker.loadAllStickerPacksVisJson
-import com.kp.bright.whatsapptickers.whatsappsticker.notifyMediaScanner
+import com.kp.bright.whatsapptickers.wasticker.whatsappsticker.StickerContentProvider
+import com.kp.bright.whatsapptickers.wasticker.whatsappsticker.StickerPackMetadata
+import com.kp.bright.whatsapptickers.wasticker.whatsappsticker.loadAllStickerPacksVisJson
+import com.kp.bright.whatsapptickers.wasticker.whatsappsticker.notifyMediaScanner
 import java.io.File
 import java.io.FileWriter
 import java.io.IOException

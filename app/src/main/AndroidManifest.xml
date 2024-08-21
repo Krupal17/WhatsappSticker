@@ -37,8 +37,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WhatsappSticker"
         tools:targetApi="31">
+
         <activity
-            android:name=".wifisettings.WifiActivity"
+            android:name=".toolkit.ToolActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,8 +47,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".MainActivity"
+            android:name=".wifisettings.WifiActivity"
+            android:exported="true">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+
+        <activity
+            android:name=".wasticker.MainActivity"
             android:exported="true">
             <!--            <intent-filter>-->
             <!--                <action android:name="android.intent.action.MAIN" />-->
@@ -66,7 +78,7 @@
         <!-- android:resource="@xml/provider_paths" /> -->
         <!-- </provider> -->
         <provider
-            android:name=".whatsappsticker.StickerContentProvider"
+            android:name=".wasticker.whatsappsticker.StickerContentProvider"
             android:authorities="com.kp.bright.whatsapptickers.stickercontentprovider"
             android:enabled="true"
             android:exported="true"

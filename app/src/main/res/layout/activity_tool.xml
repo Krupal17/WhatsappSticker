@@ -4,17 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="match_parent"
-    tools:context=".wasticker.MainActivity">
+    android:background="@color/white"
+    tools:context=".toolkit.ToolActivity">
 
     <Button
-        android:id="@+id/btnWhatsappSticker"
+        android:id="@+id/btnWhatsappStickerDemo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Whatsapp Sticker Demo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnInAppHotspotDemo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="In App Hotspot On_Off Demo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnWhatsappStickerDemo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

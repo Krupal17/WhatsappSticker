@@ -1,4 +1,4 @@
-package com.kp.bright.whatsapptickers
+package com.kp.bright.whatsapptickers.wasticker
 
 import android.Manifest.*
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -15,13 +15,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
-import com.kp.bright.whatsapptickers.whatsappsticker.ADD_PACK
-import com.kp.bright.whatsapptickers.whatsappsticker.addStickerPackToWhatsApp
-import com.kp.bright.whatsapptickers.whatsappsticker.copyAllAssetsToExternalStorage
-import com.kp.bright.whatsapptickers.whatsappsticker.copyAssetsToExternalStorage
-import com.kp.bright.whatsapptickers.whatsappsticker.createStickerPack
-import com.kp.bright.whatsapptickers.whatsappsticker.initPacks
-import com.kp.bright.whatsapptickers.whatsappsticker.loadStickerPack
+import com.kp.bright.whatsapptickers.R
+import com.kp.bright.whatsapptickers.wasticker.whatsappsticker.ADD_PACK
+import com.kp.bright.whatsapptickers.wasticker.whatsappsticker.addStickerPackToWhatsApp
+import com.kp.bright.whatsapptickers.wasticker.whatsappsticker.copyAllAssetsToExternalStorage
+import com.kp.bright.whatsapptickers.wasticker.whatsappsticker.initPacks
+import com.kp.bright.whatsapptickers.wasticker.whatsappsticker.loadStickerPack
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
