@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kp.bright.whatsapptickers.databinding.ActivityToolBinding
+import com.kp.bright.whatsapptickers.tabulas.PdfScannActivity
 import com.kp.bright.whatsapptickers.wasticker.MainActivity
 import com.kp.bright.whatsapptickers.wifisettings.WifiActivity
 
@@ -30,6 +31,10 @@ class ToolActivity : AppCompatActivity() {
             btnWhatsappStickerDemo.setOnClickListener {
                 startActivity(Intent(this@ToolActivity, MainActivity::class.java))
             }
+            btnStatementScanDemo.setOnClickListener {
+                startActivity(Intent(this@ToolActivity, PdfScannActivity::class.java))
+            }
+
         }
     }
 }

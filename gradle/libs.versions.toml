@@ -25,4 +25,3 @@ mobile-ffmpeg-full-gpl = { module = "com.arthenica:mobile-ffmpeg-full-gpl", vers
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-

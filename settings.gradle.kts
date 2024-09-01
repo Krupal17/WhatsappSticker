@@ -16,6 +16,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+//        // Add the Aspose repository here
+//        maven {
+//            url=uri("https://repository.aspose.com/repo/")
+//        }
     }
 }
 

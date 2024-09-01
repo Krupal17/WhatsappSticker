@@ -18,9 +18,7 @@ android {
             "CONTENT_PROVIDER_AUTHORITY",
             "\"com.kp.bright.whatsapptickers\" + \".stickercontentprovider\""
         )
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -50,13 +48,18 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+//    testImplementation(libs.junit)
+//    androidTestImplementation(libs.androidx.junit)
+//    androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.google.code.gson:gson:2.9.1")
     implementation(libs.mobile.ffmpeg.full.gpl)
 
     implementation ("com.linkedin.dexmaker:dexmaker-mockito:2.28.3")
     implementation ("com.jakewharton.android.repackaged:dalvik-dx:9.0.0_r3")
+
+    //table extract
+//    implementation ("com.tom-roush:pdfbox-android:2.0.27.0")
+//        implementation("com.aspose:aspose-pdf:24.8")
+    implementation("com.itextpdf:itext7-core:7.2.2")
 
 }
