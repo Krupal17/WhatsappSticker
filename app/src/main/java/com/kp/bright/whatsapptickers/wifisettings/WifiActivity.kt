@@ -44,7 +44,6 @@ class WifiActivity : AppCompatActivity() {
         binding.btnOpenDialog.setOnClickListener {
             openCustomDialog()
         }
-
         binding.btnHotpost.setOnClickListener {
             if (checkAndRequestPermissions(this)) {
                 toggleHotspot(this, { b: Boolean ->
@@ -77,6 +76,7 @@ class WifiActivity : AppCompatActivity() {
 
         // Show the keyboard immediately
         editText.requestFocus()
+
         btnOk.setOnClickListener {
             val word = editText.text.trim()
             if (word.isNotBlank()) {

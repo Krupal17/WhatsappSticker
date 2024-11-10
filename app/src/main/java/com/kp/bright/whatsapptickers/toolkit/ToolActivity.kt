@@ -2,8 +2,10 @@ package com.kp.bright.whatsapptickers.toolkit
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.kp.bright.whatsapptickers.databinding.ActivityToolBinding
+import com.kp.bright.whatsapptickers.network.isPrivateDns
 import com.kp.bright.whatsapptickers.tabulas.PdfScannActivity
 import com.kp.bright.whatsapptickers.wasticker.MainActivity
 import com.kp.bright.whatsapptickers.wifisettings.WifiActivity
@@ -33,6 +35,9 @@ class ToolActivity : AppCompatActivity() {
             }
             btnStatementScanDemo.setOnClickListener {
                 startActivity(Intent(this@ToolActivity, PdfScannActivity::class.java))
+            }
+            btnCheckDnsType.setOnClickListener {
+                Log.e("DNS-->", "initClick: isPrivateDns:" + isPrivateDns(this@ToolActivity))
             }
 
         }

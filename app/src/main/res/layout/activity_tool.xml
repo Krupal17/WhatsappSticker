@@ -33,4 +33,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnInAppHotspotDemo" />
 
+    <Button
+        android:id="@+id/btnCheckDnsType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check Dns Type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStatementScanDemo" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
